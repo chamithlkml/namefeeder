@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+bundle install
+cd /app && bundle exec rake db:migrate
+cd /app && npm install
+# cd /app/client && npm install && nohup npm run dev > /app/log/client.log 2>&1 &
+
+tail -f /dev/null
