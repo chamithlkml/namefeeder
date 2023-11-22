@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "axios": "^1.6.2",
+    "vite": "^5.0.0",
+    "vite-plugin-ruby": "^5.0.0"
+  }
+}
