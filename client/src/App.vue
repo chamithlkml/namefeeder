@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <Posts />
-  </div>
+  <MainLayout />
 </template>
 
 <script setup>
-import Posts from './components/Posts.vue'
+import MainLayout from './layouts/MainLayout.vue'
 </script>
 
 <style scoped>
