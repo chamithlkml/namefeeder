@@ -1,39 +1,3 @@
-<script setup>
-  import { ref } from 'vue';
-  import { useForm } from 'vee-validate';
-  import * as yup from 'yup';
-
-  const { values, errors, defineField } = useForm({
-    validationSchema: yup.object({
-      first_name: yup.string().required('First Name is required'),
-      last_name: yup.string().required('Last Name is required'),
-      email: yup.string().email('Email must be valid').required('Email is required'),
-      password: yup.string().required('Password is required').min(8, 'Password must be at least 8 characters long'),
-      password_confirmation: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required('Password Confirmation is required'),
-    }),
-  });
-
-  const show_signup_form = ref(true);
-
-  const [first_name, first_name_attrs] = defineField('first_name');
-  const [last_name, last_name_attrs] = defineField('last_name');
-  const [email, email_attrs] = defineField('email');
-  const [password, password_attrs] = defineField('password');
-  const [password_confirmation, password_confirmation_attrs] = defineField('password_confirmation');
-
-  const wasValidated = ref(false);
-  const success_message = ref('');
-
-  const submitForm = async () => {
-    try{
-      wasValidated.value = true;
-
-      console.log(Object.keys(errors.value).length);
-    }catch(error){
-      console.log(error);
-    }
-  };
-</script>
 <template>
   <div class="container">
     <div class="row">
@@ -86,8 +50,68 @@
       <div class="col-md-2">
       </div>
     </div>
-    <pre>{{ values }}</pre>
-    <pre>{{ errors }}</pre>
-    <pre>{{ errors.hasOwnProperty('password') }}</pre>
   </div>
 </template>
+<script setup>
+  import { ref } from 'vue';
+  import { useForm } from 'vee-validate';
+  import * as yup from 'yup';
+  import axios from 'axios';
+
+  const success_message = ref('');
+
+  const { values, errors, defineField, handleSubmit } = useForm({
+    validationSchema: yup.object({
+      first_name: yup.string().required('First Name is required'),
+      last_name: yup.string().required('Last Name is required'),
+      email: yup.string().email('Email must be valid').required('Email is required'),
+      password: yup.string().required('Password is required').min(8, 'Password must be at least 8 characters long'),
+      password_confirmation: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required('Password Confirmation is required'),
+    }),
+  });
+
+  const show_signup_form = ref(true);
+
+  const [first_name, first_name_attrs] = defineField('first_name');
+  const [last_name, last_name_attrs] = defineField('last_name');
+  const [email, email_attrs] = defineField('email');
+  const [password, password_attrs] = defineField('password');
+  const [password_confirmation, password_confirmation_attrs] = defineField('password_confirmation');
+
+  const wasValidated = ref(false);
+  
+  const signUpMerchant = async (merchantUser) => {
+    try{
+      const response = await fetch('http://localhost:3000/merchant_users/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(merchantUser)
+      });
+      const data = await response.json();
+
+      show_signup_form.value = false;
+      success_message.value = data.message;
+    }catch(error){
+      console.log(error);
+    }
+  };
+
+  const submitForm = handleSubmit(values => {
+    wasValidated.value = true;
+    
+    const merchantUser = {
+      first_name: values.first_name,
+      last_name: values.last_name,
+      email: values.email,
+      password: values.password,
+      password_confirmation: values.password_confirmation
+    };
+    signUpMerchant(merchantUser).then(() => {
+      console.log('Merchant User Signed Up');
+    }).catch(error => {
+      console.log(error);
+    });
+  });
+</script>
