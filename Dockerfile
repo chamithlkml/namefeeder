@@ -1,4 +1,4 @@
-FROM ruby:latest
+FROM ruby:3.2.2
 
 # Install Node.js, npm, yarn
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
