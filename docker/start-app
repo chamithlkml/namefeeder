@@ -2,6 +2,6 @@
 bundle install
 cd /app && bundle exec rake db:migrate
 cd /app && npm install
-# cd /app/client && npm install && nohup npm run dev > /app/log/client.log 2>&1 &
+# cd /app/client && npm install && npm run build
 
 tail -f /dev/null
