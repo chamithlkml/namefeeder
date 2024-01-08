@@ -18,3 +18,4 @@ Namefeeder is a work in progress web app which allows rural entrepreneurs to fee
 - `>> bundle install && rails s -b '0.0.0.0'`
 - `docker exec -it app bash` and enter following to start npm dev service
 - `>> cd client && npm run dev`
+- Log into http://localhost:5173/
