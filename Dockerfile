@@ -1,7 +1,5 @@
 FROM ruby:3.2.2
 
-ENV PORT=5173
-
 # Install Node.js, npm, yarn
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get update -qq && apt-get install -y nodejs npm
