@@ -56,7 +56,6 @@
   import { ref } from 'vue';
   import { useForm } from 'vee-validate';
   import * as yup from 'yup';
-  import axios from 'axios';
 
   const success_message = ref('');
 
