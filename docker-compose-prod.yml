@@ -16,6 +16,7 @@ services:
       - namefeeder-net
     volumes:
             - '.:/app'
+            - './log:/app/log'
 networks:
     namefeeder-net:
         driver: bridge
