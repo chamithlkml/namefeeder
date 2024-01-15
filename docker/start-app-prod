@@ -5,6 +5,8 @@ nginx -s reload
 # Check if the server is already running
 if [ -f /app/tmp/pids/server.pid ]; then
   echo "Server is already running. Removing PID file and restarting..."
+  # kill the process with the pid in the file
+  kill -9 $(cat /app/tmp/pids/server.pid)
   rm /app/tmp/pids/server.pid
 fi
 
