@@ -27,4 +27,4 @@ EXPOSE 3000 80
 COPY docker/start-app-prod /usr/local/bin/start-app-prod
 RUN chmod +x /usr/local/bin/start-app-prod
 
-ENTRYPOINT [ "start-app" ]
+ENTRYPOINT [ "start-app-prod" ]
