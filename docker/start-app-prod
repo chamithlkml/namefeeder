@@ -10,5 +10,6 @@ if [ -f /app/tmp/pids/server.pid ]; then
   rm /app/tmp/pids/server.pid
 fi
 
-cd /app && RAILS_ENV=$RAILS_ENV bundle exec rails db:migrate
-cd /app && bundle exec puma -C config/puma.rb
+cd /app && RAILS_ENV=production bundle exec rails db:migrate
+cd /app && nohup bundle exec puma -C config/puma.rb > log/puma.log 2>&1 &
+tail -f /dev/null
