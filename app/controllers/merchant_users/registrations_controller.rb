@@ -3,7 +3,6 @@
 class MerchantUsers::RegistrationsController < Devise::RegistrationsController
 
   def create
-    binding.pry
     if merchant_user_params[:password] != merchant_user_params[:password_confirmation]
       render json: { errors: ["Password confirmation doesn't match Password"] }, status: :unprocessable_entity
     else
