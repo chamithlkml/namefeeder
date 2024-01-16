@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 cd /app/client && npm install && npm run build
+chown -R www-data:www-data /app/client/dist
+chmod -R 755 /app/client/dist
 nginx
 nginx -s reload
 # Check if the server is already running
@@ -11,4 +13,4 @@ if [ -f /app/tmp/pids/server.pid ]; then
 fi
 
 cd /app && RAILS_ENV=production bundle exec rails db:migrate
-tail -f /dev/null
+cd /app && bundle exec puma -C config/puma.rb
