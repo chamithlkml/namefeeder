@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 cd /app/client && npm install && npm run build
-chown -R www-data:www-data /app/client/dist
-chmod -R 755 /app/client/dist
+ln -s /app/client/dist /var/www/namefeeder.com/html
+chown -R www-data:www-data /var/www/namefeeder.com/html
+chmod -R 755 /var/www/namefeeder.com/html
 nginx
 nginx -s reload
 # Check if the server is already running

@@ -15,11 +15,11 @@ RUN cd /app && bundle install
 RUN cd /app && npm install
 # Create a directory for the Vue.js build
 RUN mkdir -p /app/client/dist
+RUN mkdir -p /var/www/namefeeder.com
 
-COPY docker/nginx.conf /etc/nginx/sites-available/default
 RUN rm -f /etc/nginx/sites-enabled/default
-RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-
+RUN cp /app/docker/nginx.conf /etc/nginx/sites-available/namefeeder.conf
+RUN ln -s /etc/nginx/sites-available/namefeeder.conf /etc/nginx/sites-enabled/namefeeder.conf
 
 EXPOSE 3000 80
 
