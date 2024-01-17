@@ -15,7 +15,6 @@
               </li>
               <li class="nav-item">
                 <router-link to="/about" class="nav-link active" aria-current="page">About</router-link>
-                <a class="nav-link active" aria-current="page" href="/about">About</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
