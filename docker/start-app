@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 cd /app/client && npm install && npm run build
 ln -s /app/client/dist /var/www/namefeeder.com/html
-chown -R www-data:www-data /var/www/namefeeder.com/html
-chmod -R 755 /var/www/namefeeder.com/html
+chown -R www-data:www-data /var/www
+chmod -R 755 /var/www
 nginx
 nginx -s reload
 
