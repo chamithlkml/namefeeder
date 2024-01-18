@@ -21,6 +21,9 @@ RUN rm -f /etc/nginx/sites-enabled/default
 COPY docker/nginx_prod.conf /etc/nginx/sites-available/namefeeder.conf
 RUN ln -s /etc/nginx/sites-available/namefeeder.conf /etc/nginx/sites-enabled/namefeeder.conf
 
+COPY docker/nginx_prod_api.conf /etc/nginx/sites-available/namefeeder_api.conf
+RUN ln -s /etc/nginx/sites-available/namefeeder_api.conf /etc/nginx/sites-enabled/namefeeder_api.conf
+
 EXPOSE 3000 80 443
 
 COPY docker/start-app-prod /usr/local/bin/start-app-prod
