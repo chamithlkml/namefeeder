@@ -7,5 +7,5 @@ nginx
 nginx -s reload
 
 cd /app && RAILS_ENV=$RAILS_ENV bundle exec rails db:migrate
-# cd /app && bundle exec rails s -b '0.0.0.0'
-tail -f /dev/null
+cd /app && nohup bundle exec rails s -b '0.0.0.0' > log/development.log 2>&1 &
+tail -f /app/log/development.log
