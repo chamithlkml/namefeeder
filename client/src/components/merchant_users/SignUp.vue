@@ -56,7 +56,6 @@
   import { ref } from 'vue';
   import { useForm } from 'vee-validate';
   import * as yup from 'yup';
-  import axios from 'axios';
 
   const success_message = ref('');
 
@@ -82,7 +81,7 @@
   
   const signUpMerchant = async (merchantUser) => {
     try{
-      const response = await fetch('http://localhost:3000/merchant_users/signup', {
+      const response = await fetch('https://api.namefeeder.com/merchant_users/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

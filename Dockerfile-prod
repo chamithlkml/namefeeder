@@ -18,12 +18,15 @@ RUN mkdir -p /app/client/dist
 RUN mkdir -p /var/www/namefeeder.com
 
 RUN rm -f /etc/nginx/sites-enabled/default
-RUN cp /app/docker/nginx.conf /etc/nginx/sites-available/namefeeder.conf
+COPY docker/nginx_prod.conf /etc/nginx/sites-available/namefeeder.conf
 RUN ln -s /etc/nginx/sites-available/namefeeder.conf /etc/nginx/sites-enabled/namefeeder.conf
 
-EXPOSE 3000 80
+COPY docker/nginx_prod_api.conf /etc/nginx/sites-available/namefeeder_api.conf
+RUN ln -s /etc/nginx/sites-available/namefeeder_api.conf /etc/nginx/sites-enabled/namefeeder_api.conf
 
-COPY docker/start-app /usr/local/bin/start-app
-RUN chmod +x /usr/local/bin/start-app
+EXPOSE 3000 80 443
 
-ENTRYPOINT [ "start-app" ]
+COPY docker/start-app-prod /usr/local/bin/start-app-prod
+RUN chmod +x /usr/local/bin/start-app-prod
+
+ENTRYPOINT [ "start-app-prod" ]

@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 cd /app/client && npm install && npm run build
+ln -s /app/client/dist /var/www/namefeeder.com/html
+chown -R www-data:www-data /var/www
+chmod -R 755 /var/www
 nginx
 nginx -s reload
-# Check if the server is already running
-if [ -f /app/tmp/pids/server.pid ]; then
-  echo "Server is already running. Removing PID file and restarting..."
-  rm /app/tmp/pids/server.pid
-fi
 
 cd /app && RAILS_ENV=$RAILS_ENV bundle exec rails db:migrate
-cd /app && RAILS_ENV=$RAILS_ENV bundle exec puma -p 3000
+cd /app && nohup bundle exec rails s -b '0.0.0.0' > log/development.log 2>&1 &
+tail -f /app/log/development.log
