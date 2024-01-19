@@ -7,8 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    # origins ENV['CORS_ORIGINS'] # later change to the domain of the frontend app
-    origins '*'
+    origins ENV['CORS_ORIGINS'] # later change to the domain of the frontend app
 
     resource "*",
       headers: :any,

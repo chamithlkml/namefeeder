@@ -1,6 +1,6 @@
 # Namefeeder
 
-Namefeeder is a work in progress web app which allows rural entrepreneurs to feed their brand names to the market.
+Namefeeder is a work in progress web app which allows rural entrepreneurs to feed their brand names to the market. Deployed app is available at https://namefeeder.com/
 
 ## Here are some of the features of the app (Work in progress)
 
@@ -18,4 +18,4 @@ Namefeeder is a work in progress web app which allows rural entrepreneurs to fee
 - `>> bundle install && rails s -b '0.0.0.0'`
 - `docker exec -it app bash` and enter following to start npm dev service
 - `>> cd client && npm run dev`
-- Log into http://localhost:5173/
+- Log into http://localhost
