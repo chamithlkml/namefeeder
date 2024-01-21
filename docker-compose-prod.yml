@@ -5,6 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile-prod
     container_name: app
+    restart: always
     extra_hosts:
       - 'host.docker.internal:host-gateway'
     ports:
