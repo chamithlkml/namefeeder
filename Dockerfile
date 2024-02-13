@@ -21,7 +21,7 @@ RUN rm -f /etc/nginx/sites-enabled/default
 RUN cp /app/docker/nginx.conf /etc/nginx/sites-available/namefeeder.conf
 RUN ln -s /etc/nginx/sites-available/namefeeder.conf /etc/nginx/sites-enabled/namefeeder.conf
 
-EXPOSE 3000 80
+EXPOSE 80 3000 5173
 
 COPY docker/start-app /usr/local/bin/start-app
 RUN chmod +x /usr/local/bin/start-app
