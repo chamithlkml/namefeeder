@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class MerchantUsers::RegistrationsController < Devise::RegistrationsController
+class Api::MerchantUsers::RegistrationsController < Devise::RegistrationsController
 
   def create
     if merchant_user_params[:password] != merchant_user_params[:password_confirmation]
