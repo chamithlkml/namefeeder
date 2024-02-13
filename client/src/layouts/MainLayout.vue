@@ -11,12 +11,12 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <router-link to="/merchant_users/signup" class="nav-link active" aria-current="page">Merchant Registration</router-link>
-              </li>
-              <!-- <li class="nav-item">
-                <router-link to="/about" class="nav-link active" aria-current="page">About</router-link>
+                <router-link to="/merchant_users/signup" class="nav-link" aria-current="page">Merchant Registration</router-link>
               </li>
               <li class="nav-item">
+                <router-link to="/merchant_users/signin" class="nav-link" aria-current="page">Merchant Sign In</router-link>
+              </li>
+              <!--<li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
               </li>
               <li class="nav-item dropdown">
