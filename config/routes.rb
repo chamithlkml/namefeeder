@@ -1,17 +1,16 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  namespace :api, defaults: { format: :json } do
+  namespace :api do
     devise_for :merchant_users, path: "merchant_users", path_names: {
       sign_in: 'login',
       sign_out: 'logout',
       registration: 'signup'
     }, controllers: {
       sessions: 'api/merchant_users/sessions',
-      registrations: 'api/merchant_users/registrations'
+      registrations: 'api/merchant_users/registrations',
+      confirmations: 'api/merchant_users/confirmations',
     }
-    
-    # Additional API routes can be defined here
   end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
