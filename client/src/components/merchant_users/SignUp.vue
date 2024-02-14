@@ -1,13 +1,11 @@
 <template>
   <div class="container">
+    <AlertBox :success_message="success_message" :error_messages="error_messages" />
     <div class="row">
       <div class="col-md-2">
       </div>
       <div class="col-md-8">
         <h1 class="text-center">Merchant SignUp</h1>
-        <div v-if="success_message!=''" class="alert alert-success" role="alert">
-          {{ success_message }}
-        </div>
         <form v-if="show_signup_form" :class="{'was-validated': wasValidated}" @submit.prevent="submitForm" class="needs-validation" novalidate>
           <div class="mb-3">
             <label for="first_name" class="form-label">First Name</label>
@@ -56,8 +54,10 @@
   import { ref } from 'vue';
   import { useForm } from 'vee-validate';
   import * as yup from 'yup';
+  import AlertBox from '@/components/common/AlertBox.vue';
 
   const success_message = ref('');
+  const error_messages = ref([]);
 
   const { values, errors, defineField, handleSubmit } = useForm({
     validationSchema: yup.object({
@@ -89,11 +89,15 @@
         body: JSON.stringify(merchantUser)
       });
       const data = await response.json();
+      
+      error_messages.value = data.errors ? data.errors : [];
+      success_message.value = data.message ? data.message : '';
 
-      show_signup_form.value = false;
-      success_message.value = data.message;
+      if(data.message){
+        show_signup_form.value = false;
+      }
     }catch(error){
-      console.log(error);
+      error_messages.value = [error.message.toString()];
     }
   };
 
@@ -107,10 +111,6 @@
       password: values.password,
       password_confirmation: values.password_confirmation
     };
-    signUpMerchant(merchantUser).then(() => {
-      console.log('Merchant User Signed Up');
-    }).catch(error => {
-      console.log(error);
-    });
+    signUpMerchant(merchantUser);
   });
 </script>
